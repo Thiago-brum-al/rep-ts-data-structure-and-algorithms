@@ -22,7 +22,6 @@ class LinkedList {
     // O(1)
     push(value: number): this {
         const newNode = new Node(value);
-        this.length++;
         if(!this.head){
             this.head = newNode;
             this.tail = this.head;
@@ -30,6 +29,7 @@ class LinkedList {
         };
         this.tail!.next = newNode;
         this.tail = newNode; 
+        this.length++;
         return this;
     };
 
@@ -55,12 +55,12 @@ class LinkedList {
     // O(1)
     unshift(value: number): this {
         const newNode = new Node(value);
-        this.length++;
         if(!this.head){
             this.head = newNode;
             this.tail = newNode;
             return this;
         };
+        this.length++;
         let temp = this.head;
         this.head = newNode;
         newNode.next = temp;
@@ -70,18 +70,31 @@ class LinkedList {
     // O(1)
     shift(): Node | null {
         if(!this.head) return null;
-        this.length--;
         if(this.head === this.tail){
             let x = this.head;
             this.head = null;
             this.tail = null;
             return x;
         };
+        this.length--;
         let temp = this.head;
         this.head = this.head.next;
         temp.next = null;
         return temp;
     }; 
+
+    // O(n)
+    get(index: number): Node | null {
+        if(!this.head) return null;
+        if(index >= this.length || index < 0) return null;
+        let temp = this.head;
+        let tempIndex = 0;
+        while(tempIndex !== index){
+            temp = temp.next!;
+            tempIndex++;
+        };
+        return temp;
+    };
 };
 
 const lk = new LinkedList(4);
@@ -93,3 +106,6 @@ lk.unshift(10);
 console.log(lk);
 console.log(lk.shift());
 console.log(lk);
+lk.push(9);
+lk.push(11);
+console.log(lk.get(4));
