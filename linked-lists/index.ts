@@ -95,6 +95,15 @@ class LinkedList {
         };
         return temp;
     };
+
+    // O(n)
+    set(index: number, value: number): boolean {
+       if(!this.head) return false;
+        let temp = this.get(index);
+        if(!temp) return false;
+        temp.value = value;
+        return true;
+    };
 };
 
 const lk = new LinkedList(4);
@@ -109,3 +118,5 @@ console.log(lk);
 lk.push(9);
 lk.push(11);
 console.log(lk.get(4));
+lk.set(0, 19);
+console.log(lk);
