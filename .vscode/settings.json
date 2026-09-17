@@ -1,0 +1,13 @@
+{
+   "code-runner.executorMap": {
+      "typescript": "npx tsx"
+   },
+   "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+      "css"
+   ]
+}
